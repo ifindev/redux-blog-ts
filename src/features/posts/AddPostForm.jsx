@@ -46,6 +46,7 @@ const AddPostForm = () => {
           name="postContent"
           id="postContent"
           value={content}
+          rows="10"
           onChange={onContentChanged}
         />
         <button type="button" onClick={onSavePostClicked}>
