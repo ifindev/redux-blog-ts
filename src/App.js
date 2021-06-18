@@ -19,7 +19,7 @@ function App() {
             path="/"
             render={() => (
               <section>
-                <h2>Welcome to the Redux Essentials example app!</h2>
+                <h2>Welcome!</h2>
               </section>
             )}
           />
