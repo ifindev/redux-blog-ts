@@ -15,8 +15,15 @@ const postsSlice = createSlice({
     },
 
     postClapped(state, action) {
-      const idx = state.findIndex((post) => post.id === action.payload.id)
-      state[idx].clap += 1
+      const { id } = action.payload
+      const clappedPost = state.find((post) => post.id === id)
+      if (clappedPost) {
+        clappedPost.clap += 1
+      }
+
+      // console.log(id)
+      // const idx = state.findIndex((post) => post.id === action.payload.id)
+      // state[idx].clap += 1
     },
   },
 })
