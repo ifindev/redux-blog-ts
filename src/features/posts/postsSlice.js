@@ -8,7 +8,14 @@ const initialState = [
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
-  reducers: {},
+  reducers: {
+    postAdded(state, action) {
+      // This is done with immer in slice. So the update is immutably done
+      state.push(action.payload)
+    },
+  },
 })
+
+export const { postAdded } = postsSlice.actions
 
 export default postsSlice.reducer
