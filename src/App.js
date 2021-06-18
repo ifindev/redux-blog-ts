@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import { Navbar } from './app/Navbar'
+import PostsList from './features/posts/PostList'
 
 function App() {
   return (
@@ -18,9 +19,9 @@ function App() {
             exact
             path="/"
             render={() => (
-              <section>
-                <h2>Welcome!</h2>
-              </section>
+              <>
+                <PostsList />
+              </>
             )}
           />
           <Redirect to="/" />
