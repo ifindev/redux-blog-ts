@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-const PostList = () => {
+const PostsList = () => {
   const posts = useSelector((state) => state.posts)
 
   const renderedPosts = posts.map((post) => (
@@ -19,4 +19,4 @@ const PostList = () => {
   )
 }
 
-export default PostList
+export default PostsList
