@@ -13,9 +13,14 @@ const postsSlice = createSlice({
       // This is done with immer in slice. So the update is immutably done
       state.push(action.payload)
     },
+
+    postClapped(state, action) {
+      const idx = state.findIndex((post) => post.id === action.payload.id)
+      state[idx].clap += 1
+    },
   },
 })
 
-export const { postAdded } = postsSlice.actions
+export const { postAdded, postClapped } = postsSlice.actions
 
 export default postsSlice.reducer

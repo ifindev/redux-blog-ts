@@ -20,6 +20,7 @@ const AddPostForm = () => {
           id: nanoid(),
           title,
           content,
+          clap: 0,
         })
       )
 

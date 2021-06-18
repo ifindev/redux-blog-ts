@@ -1,10 +1,20 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+import { postClapped } from './postsSlice'
+
 const PostsList = () => {
   const posts = useSelector((state) => state.posts)
 
   const dispatch = useDispatch()
+
+  const onClapped = (id) => {
+    dispatch(
+      postClapped({
+        id,
+      })
+    )
+  }
 
   const renderedPosts = posts.map((post) => (
     <article className="post-excerpt" key={post.id}>
@@ -27,8 +37,12 @@ const PostsList = () => {
             margin: '0px',
             fontSize: '20px',
           }}
+          onClick={() => onClapped(post.id)}
         >
-          👏{' '}
+          <span role="img" aria-label="clap hand">
+            {' '}
+            👏
+          </span>
         </button>
 
         <span style={{ marginTop: '1px', marginLeft: '5px' }}>{post.clap}</span>
