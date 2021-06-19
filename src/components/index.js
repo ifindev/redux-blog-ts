@@ -1,1 +1,5 @@
-export { default as Navbar } from './Navbar'
+export { default as Navbar } from './navbar/Navbar'
+export { default as AddPostForm } from './posts/AddPostForm'
+export { default as EditPostForm } from './posts/EditPostForm'
+export { default as PostsList } from './posts/PostsList'
+export { default as SinglePostPage } from './posts/SinglePostPage'

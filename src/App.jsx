@@ -6,13 +6,13 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import { Navbar } from './components'
 import {
+  Navbar,
   PostsList,
   AddPostForm,
   SinglePostPage,
   EditPostForm,
-} from './features/posts/'
+} from './components'
 
 function App() {
   return (
