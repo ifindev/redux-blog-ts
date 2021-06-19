@@ -1,30 +1,45 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useAppSelector, useAppDispatch } from '../../redux/hooks'
+import { useHistory, RouteComponentProps } from 'react-router-dom'
+import PostsState from '../../types/posts'
 
 import { postUpdated } from '../../redux/posts/postsSlice'
 
-const EditPostForm = ({ match }) => {
+const EditPostForm: React.FC<RouteComponentProps<{ postId: string }>> = ({
+  match,
+}) => {
   const { postId } = match.params
 
-  const post = useSelector((state) =>
+  let post: PostsState = { id: '', title: '', content: '', clap: 0 }
+
+  // We might not found a post with the params ID. So post might be undefined
+  const findPost: PostsState | undefined = useAppSelector((state) =>
     state.posts.find((post) => post.id === postId)
   )
+
+  if (findPost) {
+    post = findPost!
+  }
 
   const [title, setTitle] = useState(post.title)
   const [content, setContent] = useState(post.content)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const history = useHistory()
 
-  const onTitleChanged = (e) => setTitle(e.target.value)
-  const onContentChanged = (e) => setContent(e.target.value)
+  const onTitleChanged = (changedTitle: string) => setTitle(changedTitle)
+  const onContentChanged = (changedContent: string) =>
+    setContent(changedContent)
 
   const onSavePostClicked = () => {
     if (title && content) {
-      dispatch(postUpdated({ id: postId, title, content }))
+      dispatch(postUpdated({ id: postId, title, content, clap: post.clap }))
       history.push(`/posts/${postId}`)
     }
+  }
+
+  if (!title && !content) {
+    return <h2>Sorry... We couldn't find the post you're looking for</h2>
   }
 
   return (
@@ -38,15 +53,19 @@ const EditPostForm = ({ match }) => {
           name="postTitle"
           placeholder="What\'s on your mind?"
           value={title}
-          onChange={onTitleChanged}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+            onTitleChanged(e.target.value)
+          }
         />
         <label htmlFor="postContent">Content:</label>
         <textarea
           id="postContent"
           name="postContent"
           value={content}
-          rows="10"
-          onChange={onContentChanged}
+          rows={10}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void =>
+            onContentChanged(e.target.value)
+          }
         />
         <button type="button" onClick={onSavePostClicked}>
           Save post
