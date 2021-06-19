@@ -9,8 +9,9 @@ const AddPostForm = () => {
 
   const dispatch = useDispatch()
 
-  const onTitleChanged = (e) => setTitle(e.target.value)
-  const onContentChanged = (e) => setContent(e.target.value)
+  const onTitleChanged = (changedTitle: string) => setTitle(changedTitle)
+  const onContentChanged = (changedContent: string) =>
+    setContent(changedContent)
 
   const onSavePostClicked = () => {
     if (title && content) {
@@ -30,15 +31,19 @@ const AddPostForm = () => {
           id="postTitle"
           name="postTitle"
           value={title}
-          onChange={onTitleChanged}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+            onTitleChanged(e.target.value)
+          }
         />
         <label htmlFor="postContent">Content:</label>
         <textarea
           name="postContent"
           id="postContent"
           value={content}
-          rows="10"
-          onChange={onContentChanged}
+          rows={10}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void =>
+            onContentChanged(e.target.value)
+          }
         />
         <button type="button" onClick={onSavePostClicked}>
           Save Post
