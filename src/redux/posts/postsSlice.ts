@@ -1,11 +1,6 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
-
-interface PostsState {
-  id: string
-  title: string
-  content: string
-  clap: number
-}
+import type { RootState } from '../store'
+import PostsState from '../../types/posts'
 
 const initialState: PostsState[] = [
   {
@@ -60,5 +55,7 @@ const postsSlice = createSlice({
 })
 
 export const { postAdded, postClapped, postUpdated } = postsSlice.actions
+
+export const selectPosts = (state: RootState) => state.posts
 
 export default postsSlice.reducer
