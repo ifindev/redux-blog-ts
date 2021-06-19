@@ -20,14 +20,19 @@ const postsSlice = createSlice({
       if (clappedPost) {
         clappedPost.clap += 1
       }
+    },
 
-      // console.log(id)
-      // const idx = state.findIndex((post) => post.id === action.payload.id)
-      // state[idx].clap += 1
+    postUpdated(state, action) {
+      const { id, title, content } = action.payload
+      const existingPost = state.find((post) => post.id === id)
+      if (existingPost) {
+        existingPost.title = title
+        existingPost.content = content
+      }
     },
   },
 })
 
-export const { postAdded, postClapped } = postsSlice.actions
+export const { postAdded, postClapped, postUpdated } = postsSlice.actions
 
 export default postsSlice.reducer
