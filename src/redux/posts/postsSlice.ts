@@ -40,7 +40,7 @@ const postsSlice = createSlice({
       },
     },
 
-    postClapped(state, action) {
+    postClapped(state, action: PayloadAction<PostsState>) {
       const { id } = action.payload
       const clappedPost = state.find((post) => post.id === id)
       if (clappedPost) {
@@ -48,7 +48,7 @@ const postsSlice = createSlice({
       }
     },
 
-    postUpdated(state, action) {
+    postUpdated(state, action: PayloadAction<PostsState>) {
       const { id, title, content } = action.payload
       const existingPost = state.find((post) => post.id === id)
       if (existingPost) {
