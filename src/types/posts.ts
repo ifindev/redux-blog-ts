@@ -3,4 +3,5 @@ export default interface PostsState {
   title: string
   content: string
   clap: number
+  user: string
 }

@@ -10,7 +10,7 @@ const EditPostForm: React.FC<RouteComponentProps<{ postId: string }>> = ({
 }) => {
   const { postId } = match.params
 
-  let post: PostsState = { id: '', title: '', content: '', clap: 0 }
+  let post: PostsState = { id: '', title: '', content: '', clap: 0, user: '1' }
 
   // We might not found a post with the params ID. So post might be undefined
   const findPost: PostsState | undefined = useAppSelector((state) =>
@@ -33,7 +33,7 @@ const EditPostForm: React.FC<RouteComponentProps<{ postId: string }>> = ({
 
   const onSavePostClicked = () => {
     if (title && content) {
-      dispatch(postUpdated({ id: postId, title, content, clap: post.clap }))
+      dispatch(postUpdated({ id: postId, title, content }))
       history.push(`/posts/${postId}`)
     }
   }
