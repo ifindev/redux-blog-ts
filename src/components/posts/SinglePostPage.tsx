@@ -2,6 +2,8 @@ import React from 'react'
 import { useAppSelector } from '../../redux/hooks'
 import { Link, RouteComponentProps } from 'react-router-dom'
 
+import PostAuthor from './PostAuthor'
+
 const SinglePostPage: React.FC<RouteComponentProps<{ postId: string }>> = ({
   match,
 }) => {
@@ -23,6 +25,7 @@ const SinglePostPage: React.FC<RouteComponentProps<{ postId: string }>> = ({
     <div style={{ margin: '40px' }}>
       <article className="post">
         <h2>{post.title}</h2>
+        <PostAuthor userId={post.user} />
         <div style={{ maxWidth: '100%' }}>
           <p className="post-content">{post.content}</p>
         </div>

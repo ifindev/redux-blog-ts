@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import PostsState from '../../types/posts'
 import { postClapped } from '../../redux/posts/postsSlice'
+import PostAuthor from './PostAuthor'
 
 const PostsList: React.FC = () => {
   const posts: PostsState[] = useAppSelector((state) => state.posts)
@@ -21,6 +22,7 @@ const PostsList: React.FC = () => {
   const renderedPosts = posts.map((post) => (
     <article className="post-excerpt" key={post.id}>
       <h3>{post.title}</h3>
+      <PostAuthor userId={post.user} />
       <p className="post-content">
         {post.content.substring(0, 100)}{' '}
         {post.content.length > 100 ? '...' : ''}{' '}
