@@ -1,11 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../redux/hooks'
+import { Link, RouteComponentProps } from 'react-router-dom'
 
-const SinglePostPage = ({ match }) => {
+const SinglePostPage: React.FC<RouteComponentProps<{ postId: string }>> = ({
+  match,
+}) => {
   const { postId } = match.params
 
-  const post = useSelector((state) =>
+  const post = useAppSelector((state) =>
     state.posts.find((post) => post.id === postId)
   )
 

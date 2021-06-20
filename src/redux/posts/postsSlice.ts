@@ -35,7 +35,7 @@ const postsSlice = createSlice({
       },
     },
 
-    postClapped(state, action: PayloadAction<PostsState>) {
+    postClapped(state, action: PayloadAction<{ id: string }>) {
       const { id } = action.payload
       const clappedPost = state.find((post) => post.id === id)
       if (clappedPost) {

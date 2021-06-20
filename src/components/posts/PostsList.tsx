@@ -1,15 +1,16 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useAppSelector, useAppDispatch } from '../../redux/hooks'
 import { Link } from 'react-router-dom'
 
+import PostsState from '../../types/posts'
 import { postClapped } from '../../redux/posts/postsSlice'
 
-const PostsList = () => {
-  const posts = useSelector((state) => state.posts)
+const PostsList: React.FC = () => {
+  const posts: PostsState[] = useAppSelector((state) => state.posts)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const onClapped = (id) => {
+  const onClapped = (id: string) => {
     dispatch(
       postClapped({
         id,
@@ -42,7 +43,7 @@ const PostsList = () => {
               margin: '0px',
               fontSize: '20px',
             }}
-            onClick={() => onClapped(post.id)}
+            onClick={(): void => onClapped(post.id)}
           >
             <span role="img" aria-label="clap hand">
               {' '}
