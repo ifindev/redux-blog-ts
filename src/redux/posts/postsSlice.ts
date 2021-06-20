@@ -24,14 +24,14 @@ const postsSlice = createSlice({
         state.push(action.payload)
       },
 
-      prepare: (title: string, content: string) => {
+      prepare: (title: string, content: string, userId) => {
         return {
           payload: {
             id: nanoid(),
             title: title,
             content: content,
             clap: 0,
-            user: '1',
+            user: userId,
           },
         }
       },

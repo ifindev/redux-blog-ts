@@ -1,25 +1,37 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useAppSelector, useAppDispatch } from '../../redux/hooks'
 
 import { postAdded } from '../../redux/posts/postsSlice'
 
 const AddPostForm = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [userId, setUserId] = useState('')
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
+
+  const users = useAppSelector((state) => state.users)
 
   const onTitleChanged = (changedTitle: string) => setTitle(changedTitle)
   const onContentChanged = (changedContent: string) =>
     setContent(changedContent)
+  const onAuthorChanged = (changedUser: string) => setUserId(changedUser)
 
   const onSavePostClicked = () => {
     if (title && content) {
-      dispatch(postAdded(title, content))
+      dispatch(postAdded(title, content, userId))
       setTitle('')
       setContent('')
     }
   }
+
+  const canSave = Boolean(title) && Boolean(content) && Boolean(userId)
+
+  const usersOptions = users.map((user) => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ))
 
   return (
     <section>
@@ -35,6 +47,17 @@ const AddPostForm = () => {
             onTitleChanged(e.target.value)
           }
         />
+        <label htmlFor="postAuthor">Author:</label>
+        <select
+          id="postAuthor"
+          value={userId}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>): void =>
+            onAuthorChanged(e.target.value)
+          }
+        >
+          <option value=""></option>
+          {usersOptions}
+        </select>
         <label htmlFor="postContent">Content:</label>
         <textarea
           name="postContent"
@@ -45,7 +68,7 @@ const AddPostForm = () => {
             onContentChanged(e.target.value)
           }
         />
-        <button type="button" onClick={onSavePostClicked}>
+        <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
           Save Post
         </button>
       </form>
