@@ -10,7 +10,14 @@ const EditPostForm: React.FC<RouteComponentProps<{ postId: string }>> = ({
 }) => {
   const { postId } = match.params
 
-  let post: PostsState = { id: '', title: '', content: '', clap: 0, user: '1' }
+  let post: PostsState = {
+    id: '',
+    date: '',
+    title: '',
+    content: '',
+    clap: 0,
+    user: '1',
+  }
 
   // We might not found a post with the params ID. So post might be undefined
   const findPost: PostsState | undefined = useAppSelector((state) =>
