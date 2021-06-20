@@ -23,7 +23,7 @@ const postsSlice = createSlice({
         state.push(action.payload)
       },
 
-      prepare: (title: string, content: string) => {
+      prepare: (title, content) => {
         return {
           payload: {
             id: nanoid(),
