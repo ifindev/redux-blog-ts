@@ -17,6 +17,13 @@ const EditPostForm: React.FC<RouteComponentProps<{ postId: string }>> = ({
     content: '',
     clap: 0,
     user: '1',
+    reactions: {
+      thumbsUp: 0,
+      hooray: 0,
+      heart: 0,
+      rocket: 0,
+      eyes: 0,
+    },
   }
 
   // We might not found a post with the params ID. So post might be undefined

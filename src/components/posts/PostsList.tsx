@@ -6,6 +6,7 @@ import PostsState from '../../types/posts'
 import { postClapped } from '../../redux/posts/postsSlice'
 import PostAuthor from './PostAuthor'
 import TimeAgo from './TimeAgo'
+import ReactionButtons from './ReactionButtons'
 
 const PostsList: React.FC = () => {
   const posts: PostsState[] = useAppSelector((state) => state.posts)
@@ -17,14 +18,6 @@ const PostsList: React.FC = () => {
   console.log(orderedPosts)
 
   const dispatch = useAppDispatch()
-
-  const onClapped = (id: string) => {
-    dispatch(
-      postClapped({
-        id,
-      })
-    )
-  }
 
   const renderedPosts = orderedPosts.map((post) => (
     <article className="post-excerpt" key={post.id}>
@@ -38,33 +31,8 @@ const PostsList: React.FC = () => {
         {post.content.length > 100 ? '...' : ''}{' '}
       </p>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '50px',
-            padding: '5px',
-          }}
-        >
-          <button
-            style={{
-              backgroundColor: '#fff',
-              border: 'none',
-              padding: '0px',
-              margin: '0px',
-              fontSize: '20px',
-            }}
-            onClick={(): void => onClapped(post.id)}
-          >
-            <span role="img" aria-label="clap hand">
-              {' '}
-              👏
-            </span>
-          </button>
-          <span style={{ marginTop: '1px', marginLeft: '5px' }}>
-            {post.clap}
-          </span>
+        <div>
+          <ReactionButtons post={post} />
         </div>
         <div>
           <Link

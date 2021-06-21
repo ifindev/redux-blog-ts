@@ -12,6 +12,13 @@ const initialState: PostsState[] = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse minima recusandae nisi ab ipsum eveniet, doloremque repellat reiciendis provident illo dicta, cupiditate possimus rem accusantium odio facere aut quo beatae. Illum tempora aut quo sint esse. Ipsum veritatis sit, tempora explicabo amet voluptate perferendis tempore eos fugit veniam ratione ipsa non deserunt nesciunt ullam? Molestias neque natus sequi laudantium sunt, possimus mollitia saepe perspiciatis error debitis blanditiis eum. Nemo ab quod ipsa! Repudiandae officia qui eum quo numquam modi laborum nesciunt vero, corporis sint! A hic officiis vitae repellendus molestias consectetur blanditiis sed ab debitis sit, sequi dolor. Tempore, repudiandae.',
     clap: 0,
     user: '1',
+    reactions: {
+      thumbsUp: 0,
+      hooray: 0,
+      heart: 0,
+      rocket: 0,
+      eyes: 0,
+    },
   },
   {
     id: '2',
@@ -20,6 +27,13 @@ const initialState: PostsState[] = [
     content: 'More text',
     clap: 0,
     user: '0',
+    reactions: {
+      thumbsUp: 0,
+      hooray: 0,
+      heart: 0,
+      rocket: 0,
+      eyes: 0,
+    },
   },
   {
     id: '3',
@@ -28,6 +42,13 @@ const initialState: PostsState[] = [
     content: 'More text',
     clap: 0,
     user: '0',
+    reactions: {
+      thumbsUp: 0,
+      hooray: 0,
+      heart: 0,
+      rocket: 0,
+      eyes: 0,
+    },
   },
 ]
 
@@ -41,7 +62,7 @@ const postsSlice = createSlice({
         state.push(action.payload)
       },
 
-      prepare: (title: string, content: string, userId) => {
+      prepare: (title: string, content: string, userId: string) => {
         return {
           payload: {
             id: nanoid(),
@@ -50,6 +71,13 @@ const postsSlice = createSlice({
             content: content,
             clap: 0,
             user: userId,
+            reactions: {
+              thumbsUp: 0,
+              hooray: 0,
+              heart: 0,
+              rocket: 0,
+              eyes: 0,
+            },
           },
         }
       },
