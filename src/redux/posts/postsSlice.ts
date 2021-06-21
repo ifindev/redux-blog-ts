@@ -83,11 +83,14 @@ const postsSlice = createSlice({
       },
     },
 
-    postClapped(state, action: PayloadAction<{ id: string }>) {
-      const { id } = action.payload
-      const clappedPost = state.find((post) => post.id === id)
-      if (clappedPost) {
-        clappedPost.clap += 1
+    reactionAdded(
+      state,
+      action: PayloadAction<{ postId: string; reaction: string }>
+    ) {
+      const { postId, reaction } = action.payload
+      const existingPost = state.find((post) => post.id === postId)
+      if (existingPost) {
+        existingPost.reactions[reaction]++
       }
     },
 
@@ -105,7 +108,7 @@ const postsSlice = createSlice({
   },
 })
 
-export const { postAdded, postClapped, postUpdated } = postsSlice.actions
+export const { postAdded, reactionAdded, postUpdated } = postsSlice.actions
 
 export const selectPosts = (state: RootState) => state.posts
 
