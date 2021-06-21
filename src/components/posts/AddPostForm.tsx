@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../redux/hooks'
 
 import { postAdded } from '../../redux/posts/postsSlice'
 
-const AddPostForm = () => {
+const AddPostForm: React.FC = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [userId, setUserId] = useState('')

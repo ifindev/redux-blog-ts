@@ -6,20 +6,18 @@ const PostAuthor: React.FC<{ userId: string }> = ({ userId }) => {
     state.users.find((user) => user.id === userId)
   )
   return (
-    <div
+    <span
       style={{
-        padding: '2px',
-        marginTop: '10px',
+        padding: '2px 5px',
         textAlign: 'center',
         backgroundColor: '#8B5CF6',
         color: 'white',
-        width: '100px',
         borderRadius: '10px',
         fontSize: '12px',
       }}
     >
       {author ? author.name : 'Unknown author'}
-    </div>
+    </span>
   )
 }
 

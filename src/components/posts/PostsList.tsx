@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import PostsState from '../../types/posts'
 import { postClapped } from '../../redux/posts/postsSlice'
 import PostAuthor from './PostAuthor'
+import TimeAgo from './TimeAgo'
 
 const PostsList: React.FC = () => {
   const posts: PostsState[] = useAppSelector((state) => state.posts)
@@ -22,7 +23,10 @@ const PostsList: React.FC = () => {
   const renderedPosts = posts.map((post) => (
     <article className="post-excerpt" key={post.id}>
       <h3>{post.title}</h3>
-      <PostAuthor userId={post.user} />
+      <section style={{ marginTop: '10px', padding: '0px' }}>
+        <PostAuthor userId={post.user} />
+        <TimeAgo timestamp={post.date} />
+      </section>
       <p className="post-content">
         {post.content.substring(0, 100)}{' '}
         {post.content.length > 100 ? '...' : ''}{' '}
