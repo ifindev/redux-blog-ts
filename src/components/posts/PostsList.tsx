@@ -1,9 +1,8 @@
 import React from 'react'
-import { useAppSelector, useAppDispatch } from '../../redux/hooks'
+import { useAppSelector } from '../../redux/hooks'
 import { Link } from 'react-router-dom'
 
 import PostsState from '../../types/posts'
-import { postClapped } from '../../redux/posts/postsSlice'
 import PostAuthor from './PostAuthor'
 import TimeAgo from './TimeAgo'
 import ReactionButtons from './ReactionButtons'
@@ -16,8 +15,6 @@ const PostsList: React.FC = () => {
     .sort((a, b) => b.date.localeCompare(a.date))
 
   console.log(orderedPosts)
-
-  const dispatch = useAppDispatch()
 
   const renderedPosts = orderedPosts.map((post) => (
     <article className="post-excerpt" key={post.id}>
